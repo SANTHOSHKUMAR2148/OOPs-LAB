@@ -1,74 +1,63 @@
 import java.util.Scanner;
-
-public class Electricbill {
-    public static void main(String[] args) {
-        Consumer ob = new Consumer();
-        ob.getData();
-        ob.calc();
-        ob.display();
-    }
+public class ElectBill
+{
+public static void main(String[]args)
+{
+consumer ob=new consumer();
+ob.Getdata();
+ob.Calc();
+ob.Display();
 }
-
-class Consumer {
-    Scanner in = new Scanner(System.in);
-
-    int cno;
-    String cname, typeOfConn;
-    double preReading, currReading, unitConsumed, tbill;
-
-    void getData() {
-        System.out.print("Enter Consumer Number: ");
-        cno = in.nextInt();
-        in.nextLine(); // Clear the input buffer
-
-        System.out.print("Enter Consumer Name: ");
-        cname = in.nextLine();
-
-        System.out.print("Enter Type of Connection (Domestic/Commercial): ");
-        typeOfConn = in.nextLine();
-
-        System.out.print("Enter Previous Month Reading: ");
-        preReading = in.nextDouble();
-
-        System.out.print("Enter Current Month Reading: ");
-        currReading = in.nextDouble();
-    }
-
-    void calc() {
-        unitConsumed = currReading - preReading;
-
-        if (typeOfConn.equalsIgnoreCase("Domestic")) {
-            if (unitConsumed <= 100)
-                tbill = unitConsumed * 1;
-            else if (unitConsumed <= 200)
-                tbill = unitConsumed * 2.5;
-            else if (unitConsumed <= 500)
-                tbill = unitConsumed * 4;
-            else
-                tbill = unitConsumed * 6;
-        } 
-        else if (typeOfConn.equalsIgnoreCase("Commercial")) {
-            if (unitConsumed <= 100)
-                tbill = unitConsumed * 2;
-            else if (unitConsumed <= 200)
-                tbill = unitConsumed * 4.5;
-            else if (unitConsumed <= 500)
-                tbill = unitConsumed * 6;
-            else
-                tbill = unitConsumed * 7;
-        } 
-        else {
-            System.out.println("Invalid Connection Type!");
-            tbill = 0;
-        }
-    }
-
-    void display() {
-        System.out.println("\n------ Electricity Bill ------");
-        System.out.println("Consumer Number : " + cno);
-        System.out.println("Consumer Name   : " + cname);
-        System.out.println("Connection Type : " + typeOfConn);
-        System.out.println("Units Consumed  : " + unitConsumed);
-        System.out.println("Total Bill      : Rs. " + tbill);
-    }
+}
+class consumer
+{
+Scanner in=new Scanner(System.in);
+int cno;
+String cname,type_of_conn;
+double pre_reading,curr_reading,unit_consumed,tbill;
+void Getdata()
+{
+System.out.print("\n\t Enter consumer number=");
+cno=in.nextInt();
+System.out.print("\n\t Enter consumer name=");
+cname=in.nextLine();
+System.out.print("\n\t Enter the type of connection=");
+type_of_conn=in.nextLine();
+System.out.print("\n\t Enter pre_month reading=");
+pre_reading=in.nextDouble();
+System.out.print("\n\t Enter current_month reading=");
+curr_reading=in.nextDouble();
+}
+void Calc()
+{
+unit_consumed=curr_reading-pre_reading;
+if(type_of_conn.contains("domestic"))
+{
+if(unit_consumed<=100)
+tbill=1*unit_consumed;
+else if (unit_consumed>100&&unit_consumed<=200)
+tbill=2.50*unit_consumed;
+else if (unit_consumed>200&&unit_consumed<=500)
+tbill=4*unit_consumed;
+else
+tbill=6*unit_consumed;
+}
+else if(type_of_conn.contains("commercial"))
+{
+if(unit_consumed<=100)
+tbill=2*unit_consumed;
+else if (unit_consumed>100&&unit_consumed<=200)
+tbill=4.50*unit_consumed;
+else if (unit_consumed>200&&unit_consumed<=500)
+tbill=6*unit_consumed;
+else
+tbill=7*unit_consumed;
+}
+}
+void Display()
+{
+System.out.println("\n\t  consumer name="+cname);
+System.out.println("\n\t total units="+unit_consumed);
+System.out.println("\n\t total bill=RS"+tbill);
+}
 }
